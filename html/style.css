@@ -14,10 +14,9 @@
     width: 95px;
 }
 
-
-#chromium {
+#image {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20vh;
+    height: 10px;
 }
