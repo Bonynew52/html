@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+
+.item {
+    margin: 2px;
+    width: 300px;
+}
+
+.searchbutton {
+    width: 95px;
+}
+
+
+#chromium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+}
