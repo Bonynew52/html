@@ -1,20 +1,32 @@
-import { ACTION } from 'next/dist/client/components/app-router-headers'
+"use client";
+
 import Chrome from '../chromium-logo.png'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+const googleUrl = new URL("/search", "https://www.google.com");
 
 export default function Page() {
+  const router = useRouter();
+  const [query, setQuery] = useState("");
+  function redirectToGoogle() {
+    googleUrl.searchParams.set("udm", "2")
+    googleUrl.searchParams.set("as_q", query)
+    router.push(googleUrl.toString())
+  }
   return (
-    <div className="flex flex-col h-screen bg-black">
-        <Links />
+    <div className="flex flex-col h-screen">
+      <Links />
       <main className="flex flex-col items-center justify-center h-full space-y-8">
         <Image src={Chrome} alt="chromium logo" className="w-32" />
-        <form action="https://www.google.com/search" className="flex flex-col items-center w-2/5 space-y-8">
-          <input type="text" name="q" className="border-2 border-gray-600 w-full" />
-          <div className="flex flex-row justify-center space-x-4 ">
-            <button type="submit" className="w-40 border-2 border-gray-600 bg-gray-800 text-white">Google search</button>
-            <button type="submit" className="w-40 border-2 border-gray-600 bg-gray-800 text-white">I'm feeling lucky</button>
-          </div>
-        </form>
+        <input type="text" className="border-2 border-gray-600 w-2/3" value={query} onChange={function (event) {
+          setQuery(event.target.value)
+        }} />
+        <div className="flex flex-row justify-center space-x-4 ">
+          <button type="button" onClick={redirectToGoogle} className="w-40 border-2 border-gray-600 bg-gray-800 text-white">Google search</button>
+          <button type="button" className="w-40 border-2 border-gray-600 bg-gray-800 text-white">I'm feeling lucky</button>
+        </div>
       </main>
     </div>
   )
