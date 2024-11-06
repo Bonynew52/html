@@ -2,6 +2,12 @@ import Chrome from './chromium-logo.png'
 import Image from 'next/image'
 
 export default function Page() {
+  function redirectToGoogleLucky() {
+    googleUrl.searchParams.set("q", q)
+    googleUrl.searchParams.set("btnI", "I'm Feeling Lucky")
+    router.push(googleUrl.toString())
+  }
+
   return (
     <div className="flex flex-col h-screen bg-black">
       <Links />
